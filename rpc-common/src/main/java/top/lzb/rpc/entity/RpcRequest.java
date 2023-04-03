@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @author ziyang
  */
 @Data
-@Builder
+@Builder//生成一个构建器（静态内部类，直接通过类名调用），通过链式调用builder来build一个类实例
 public class RpcRequest implements Serializable {
 
     /**

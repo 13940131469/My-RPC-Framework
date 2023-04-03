@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @author ziyang
  */
 @Data
-@AllArgsConstructor
+@AllArgsConstructor//生成一个全参数的构造方法
 public class HelloObject implements Serializable {
 
     private Integer id;
