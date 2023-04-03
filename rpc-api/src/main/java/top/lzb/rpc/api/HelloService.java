@@ -1,4 +1,4 @@
-package top.guoziyang.rpc.api;
+package top.lzb.rpc.api;
 
 /**
  * @author ziyang

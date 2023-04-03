@@ -1,4 +1,4 @@
-package top.guoziyang.rpc.api;
+package top.lzb.rpc.api;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

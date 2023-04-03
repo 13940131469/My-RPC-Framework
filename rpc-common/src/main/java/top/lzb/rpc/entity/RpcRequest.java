@@ -1,4 +1,4 @@
-package top.guoziyang.rpc.entity;
+package top.lzb.rpc.entity;
 
 import lombok.Builder;
 import lombok.Data;

@@ -1,7 +1,7 @@
-package top.guoziyang.rpc.entity;
+package top.lzb.rpc.entity;
 
 import lombok.Data;
-import top.guoziyang.rpc.enumeration.ResponseCode;
+import top.lzb.rpc.enumeration.ResponseCode;
 
 import java.io.Serializable;
 

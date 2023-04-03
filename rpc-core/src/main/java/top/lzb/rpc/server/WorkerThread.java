@@ -1,9 +1,9 @@
-package top.guoziyang.rpc.server;
+package top.lzb.rpc.server;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import top.guoziyang.rpc.entity.RpcRequest;
-import top.guoziyang.rpc.entity.RpcResponse;
+import top.lzb.rpc.entity.RpcRequest;
+import top.lzb.rpc.entity.RpcResponse;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

@@ -1,9 +1,9 @@
-package top.guoziyang.test;
+package top.lzb.test;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import top.guoziyang.rpc.api.HelloObject;
-import top.guoziyang.rpc.api.HelloService;
+import top.lzb.rpc.api.HelloObject;
+import top.lzb.rpc.api.HelloService;
 
 /**
  * @author ziyang

@@ -1,7 +1,7 @@
-package top.guoziyang.rpc.client;
+package top.lzb.rpc.client;
 
-import top.guoziyang.rpc.entity.RpcRequest;
-import top.guoziyang.rpc.entity.RpcResponse;
+import top.lzb.rpc.entity.RpcRequest;
+import top.lzb.rpc.entity.RpcResponse;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

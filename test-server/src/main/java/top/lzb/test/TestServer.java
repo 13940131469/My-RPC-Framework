@@ -1,7 +1,7 @@
-package top.guoziyang.test;
+package top.lzb.test;
 
-import top.guoziyang.rpc.api.HelloService;
-import top.guoziyang.rpc.server.RpcServer;
+import top.lzb.rpc.api.HelloService;
+import top.lzb.rpc.server.RpcServer;
 
 /**
  * 测试用服务提供方（服务端）

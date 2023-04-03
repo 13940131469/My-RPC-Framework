@@ -1,8 +1,8 @@
-package top.guoziyang.test;
+package top.lzb.test;
 
-import top.guoziyang.rpc.api.HelloObject;
-import top.guoziyang.rpc.api.HelloService;
-import top.guoziyang.rpc.client.RpcClientProxy;
+import top.lzb.rpc.api.HelloObject;
+import top.lzb.rpc.api.HelloService;
+import top.lzb.rpc.client.RpcClientProxy;
 
 /**
  * 测试用消费者（客户端）

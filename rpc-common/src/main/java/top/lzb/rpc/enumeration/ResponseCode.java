@@ -1,4 +1,4 @@
-package top.guoziyang.rpc.enumeration;
+package top.lzb.rpc.enumeration;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
