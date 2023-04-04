@@ -6,7 +6,7 @@ import top.lzb.rpc.client.RpcClientProxy;
 
 /**
  * 测试用消费者（客户端）
- * @author ziyang
+ * @author lzb
  */
 public class TestClient {
 

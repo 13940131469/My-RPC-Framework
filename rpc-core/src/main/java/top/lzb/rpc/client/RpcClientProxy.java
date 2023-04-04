@@ -33,7 +33,7 @@ public class RpcClientProxy implements InvocationHandler {
                 .parameters(args)
                 .paramTypes(method.getParameterTypes())
                 .build();
-        RpcClient rpcClient = new RpcClient();
-        return ((RpcResponse) rpcClient.sendRequest(rpcRequest, host, port)).getData();
+        RpcClient rpcClient = new SocketClient(host,port);
+        return ((RpcResponse) rpcClient.sendRequest(rpcRequest)).getData();
     }
 }

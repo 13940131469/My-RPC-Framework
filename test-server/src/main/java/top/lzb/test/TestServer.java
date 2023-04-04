@@ -3,6 +3,7 @@ package top.lzb.test;
 import top.lzb.rpc.api.HelloService;
 import top.lzb.rpc.registry.DefaultServiceRegistry;
 import top.lzb.rpc.server.RpcServer;
+import top.lzb.rpc.server.SocketServer;
 
 /**
  * 测试用服务提供方（服务端）
@@ -14,7 +15,7 @@ public class TestServer {
         HelloService helloService = new HelloServiceImpl();
         DefaultServiceRegistry registry = new DefaultServiceRegistry();
         registry.register(helloService);
-        RpcServer rpcServer = new RpcServer(registry);
+        RpcServer rpcServer = new SocketServer(registry);
         rpcServer.start(9000);
     }
 
