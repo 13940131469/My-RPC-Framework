@@ -1,6 +1,7 @@
 package top.lzb.test;
 
 import top.lzb.rpc.api.HelloService;
+import top.lzb.rpc.registry.DefaultServiceRegistry;
 import top.lzb.rpc.server.RpcServer;
 
 /**
@@ -11,8 +12,10 @@ public class TestServer {
 
     public static void main(String[] args) {
         HelloService helloService = new HelloServiceImpl();
-        RpcServer rpcServer = new RpcServer();
-        rpcServer.register(helloService, 9000);
+        DefaultServiceRegistry registry = new DefaultServiceRegistry();
+        registry.register(helloService);
+        RpcServer rpcServer = new RpcServer(registry);
+        rpcServer.start(9000);
     }
 
 }
