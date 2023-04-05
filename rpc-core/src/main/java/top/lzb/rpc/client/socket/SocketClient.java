@@ -1,8 +1,14 @@
-package top.lzb.rpc.client;
+package top.lzb.rpc.client.socket;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import top.lzb.rpc.client.RpcClient;
 import top.lzb.rpc.entity.RpcRequest;
+import top.lzb.rpc.entity.RpcResponse;
+import top.lzb.rpc.enumeration.ResponseCode;
+import top.lzb.rpc.enumeration.RpcError;
+import top.lzb.rpc.exception.RpcException;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -28,7 +34,16 @@ public class SocketClient implements RpcClient {
             ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
             objectOutputStream.writeObject(rpcRequest);
             objectOutputStream.flush();
-            return objectInputStream.readObject();
+            RpcResponse rpcResponse = (RpcResponse) objectInputStream.readObject();
+            if(rpcResponse == null) {
+                logger.error("服务调用失败，service：{}", rpcRequest.getInterfaceName());
+                throw new RpcException(RpcError.SERVICE_INVOCATION_FAILURE, " service:" + rpcRequest.getInterfaceName());
+            }
+            if(rpcResponse.getStatusCode() == null || rpcResponse.getStatusCode() != ResponseCode.SUCCESS.getCode()) {
+                logger.error("调用服务失败, service: {}, response:{}", rpcRequest.getInterfaceName(), rpcResponse);
+                throw new RpcException(RpcError.SERVICE_INVOCATION_FAILURE, " service:" + rpcRequest.getInterfaceName());
+            }
+            return rpcResponse.getData();
         } catch (IOException | ClassNotFoundException e) {
             logger.error("调用时有错误发生：", e);
             return null;

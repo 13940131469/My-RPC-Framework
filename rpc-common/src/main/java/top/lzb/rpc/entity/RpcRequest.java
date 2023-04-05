@@ -1,7 +1,10 @@
 package top.lzb.rpc.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
 /**
@@ -9,9 +12,10 @@ import java.io.Serializable;
  * @author ziyang
  */
 @Data
-@Builder//生成一个构建器（静态内部类，直接通过类名调用），通过链式调用builder来build一个类实例
+//@Builder//生成一个构建器（静态内部类，直接通过类名调用），通过链式调用builder来build一个类实例
+@AllArgsConstructor
+@NoArgsConstructor
 public class RpcRequest implements Serializable {
-
     /**
      * 待调用接口名称
      */

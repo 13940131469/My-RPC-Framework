@@ -3,13 +3,13 @@ package top.lzb.test;
 import top.lzb.rpc.api.HelloService;
 import top.lzb.rpc.registry.DefaultServiceRegistry;
 import top.lzb.rpc.server.RpcServer;
-import top.lzb.rpc.server.SocketServer;
+import top.lzb.rpc.server.socket.SocketServer;
 
 /**
  * 测试用服务提供方（服务端）
  * @author ziyang
  */
-public class TestServer {
+public class TestSocketServer {
 
     public static void main(String[] args) {
         HelloService helloService = new HelloServiceImpl();

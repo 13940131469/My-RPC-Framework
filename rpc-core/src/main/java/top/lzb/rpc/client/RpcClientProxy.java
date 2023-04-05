@@ -8,16 +8,14 @@ import java.lang.reflect.Proxy;
 
 /**
  * RPC客户端动态代理
- * @author ziyang
+ * @author lzb
  */
 public class RpcClientProxy implements InvocationHandler {
 
-    private String host;
-    private int port;
+    private RpcClient rpcClient;
 
-    public RpcClientProxy(String host, int port) {
-        this.host = host;
-        this.port = port;
+    public RpcClientProxy(RpcClient client) {
+       this.rpcClient = client;
     }
 
     @SuppressWarnings("unchecked")
@@ -27,13 +25,8 @@ public class RpcClientProxy implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        RpcRequest rpcRequest = RpcRequest.builder()
-                .interfaceName(method.getDeclaringClass().getName())
-                .methodName(method.getName())
-                .parameters(args)
-                .paramTypes(method.getParameterTypes())
-                .build();
-        RpcClient rpcClient = new SocketClient(host,port);
-        return ((RpcResponse) rpcClient.sendRequest(rpcRequest)).getData();
+        RpcRequest rpcRequest = new RpcRequest(method.getDeclaringClass().getName(),
+                method.getName(), args, method.getParameterTypes());
+        return rpcClient.sendRequest(rpcRequest);
     }
 }
