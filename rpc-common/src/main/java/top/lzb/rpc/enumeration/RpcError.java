@@ -15,7 +15,8 @@ public enum RpcError {
     SERVICE_NOT_IMPLEMENT_ANY_INTERFACE("注册的服务未实现接口"),
     UNKNOWN_PROTOCOL("未发现的协议类型"),
     UNKNOWN_PACKAGE_TYPE("未识别的包类型"),
-    UNKNOWN_SERIALIZER("不识别的序列化");
+    UNKNOWN_SERIALIZER("不识别的序列化"),
+    RESPONSE_NOT_MATCH("响应号与请求号不匹配");
     private final String message;
 
 }
