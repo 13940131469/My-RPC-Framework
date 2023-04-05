@@ -10,6 +10,8 @@ public interface CommonSerializer {
 
     static CommonSerializer getByCode(int code) {
         switch (code) {
+            case 0:
+                return new KYROSerializer();
             case 1:
                 return new JSONSerializer();
             default:

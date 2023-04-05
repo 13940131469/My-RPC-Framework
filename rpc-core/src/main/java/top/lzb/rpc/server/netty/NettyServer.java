@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import top.lzb.rpc.common.CommonDecoder;
 import top.lzb.rpc.common.CommonEncoder;
 import top.lzb.rpc.common.JSONSerializer;
+import top.lzb.rpc.common.KYROSerializer;
 import top.lzb.rpc.server.RpcServer;
 
 public class NettyServer implements RpcServer {
@@ -35,7 +36,7 @@ public class NettyServer implements RpcServer {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             ChannelPipeline pipeline = ch.pipeline();
-                            pipeline.addLast(new CommonEncoder(new JSONSerializer()));
+                            pipeline.addLast(new CommonEncoder(new KYROSerializer()));
                             pipeline.addLast(new CommonDecoder());
                             pipeline.addLast(new NettyServerHandler());
                         }

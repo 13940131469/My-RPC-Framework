@@ -12,6 +12,7 @@ import top.lzb.rpc.client.RpcClient;
 import top.lzb.rpc.common.CommonDecoder;
 import top.lzb.rpc.common.CommonEncoder;
 import top.lzb.rpc.common.JSONSerializer;
+import top.lzb.rpc.common.KYROSerializer;
 import top.lzb.rpc.entity.RpcRequest;
 import top.lzb.rpc.entity.RpcResponse;
 
@@ -39,7 +40,7 @@ public class NettyClient implements RpcClient {
                     protected void initChannel(SocketChannel ch) throws Exception {
                         ChannelPipeline pipeline = ch.pipeline();
                         pipeline.addLast(new CommonDecoder())
-                                .addLast(new CommonEncoder(new JSONSerializer()))
+                                .addLast(new CommonEncoder(new KYROSerializer()))
                                 .addLast(new NettyClientHandler());
                     }
                 });
