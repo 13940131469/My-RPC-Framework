@@ -15,8 +15,8 @@ public class TestSocketServer {
         HelloService helloService = new HelloServiceImpl();
         DefaultServiceProvider registry = new DefaultServiceProvider();
         registry.addServiceProvider(helloService);
-        RpcServer rpcServer = new SocketServer(registry);
-        rpcServer.start();
+        RpcServer rpcServer = new SocketServer("127.0.0.1",9000);
+        rpcServer.publishService(helloService,HelloService.class);
     }
 
 }
