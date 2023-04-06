@@ -1,4 +1,4 @@
-package top.lzb.rpc.registry;
+package top.lzb.rpc.provider;
 
 public interface ServiceProvider {
 
