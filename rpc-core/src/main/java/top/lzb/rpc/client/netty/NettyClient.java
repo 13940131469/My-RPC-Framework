@@ -15,7 +15,10 @@ import top.lzb.rpc.common.JSONSerializer;
 import top.lzb.rpc.common.KYROSerializer;
 import top.lzb.rpc.entity.RpcRequest;
 import top.lzb.rpc.entity.RpcResponse;
+import top.lzb.rpc.loadbalancer.PollingLoadBanlancer;
+import top.lzb.rpc.registry.NacosServiceDiscovery;
 import top.lzb.rpc.registry.NacosServiceRegistry;
+import top.lzb.rpc.registry.ServiceDiscovery;
 import top.lzb.rpc.registry.ServiceRegistry;
 
 import java.net.InetSocketAddress;
@@ -28,8 +31,11 @@ public class NettyClient implements RpcClient {
 
     private final ServiceRegistry serviceRegistry;
 
+    private final ServiceDiscovery serviceDiscovery;
+
     public NettyClient() {
         this.serviceRegistry = new NacosServiceRegistry();
+        this.serviceDiscovery = new NacosServiceDiscovery(new PollingLoadBanlancer());
     }
 
     static {
@@ -52,7 +58,7 @@ public class NettyClient implements RpcClient {
     @Override
     public Object sendRequest(RpcRequest rpcRequest) {
         try {
-            InetSocketAddress inetSocketAddress = serviceRegistry.lookupService(rpcRequest.getInterfaceName());
+            InetSocketAddress inetSocketAddress = serviceDiscovery.lookupService(rpcRequest.getInterfaceName());
             String host = inetSocketAddress.getHostString();
             int port = inetSocketAddress.getPort();
             ChannelFuture future = bootstrap.connect(inetSocketAddress.getHostString(), port).sync();

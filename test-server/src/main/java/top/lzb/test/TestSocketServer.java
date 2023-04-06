@@ -1,7 +1,7 @@
 package top.lzb.test;
 
 import top.lzb.rpc.api.HelloService;
-import top.lzb.rpc.registry.DefaultServiceProvider;
+import top.lzb.rpc.provider.DefaultServiceProvider;
 import top.lzb.rpc.server.RpcServer;
 import top.lzb.rpc.server.socket.SocketServer;
 

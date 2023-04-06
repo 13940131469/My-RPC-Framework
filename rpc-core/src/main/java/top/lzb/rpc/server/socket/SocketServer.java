@@ -2,9 +2,9 @@ package top.lzb.rpc.server.socket;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import top.lzb.rpc.registry.DefaultServiceProvider;
+import top.lzb.rpc.provider.DefaultServiceProvider;
 import top.lzb.rpc.registry.NacosServiceRegistry;
-import top.lzb.rpc.registry.ServiceProvider;
+import top.lzb.rpc.provider.ServiceProvider;
 import top.lzb.rpc.registry.ServiceRegistry;
 import top.lzb.rpc.server.RequestHandler;
 import top.lzb.rpc.server.RpcServer;
