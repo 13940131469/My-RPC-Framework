@@ -1,7 +1,10 @@
 package top.lzb.rpc.util;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.util.Map;
 import java.util.concurrent.*;
 
 /**
@@ -11,6 +14,7 @@ import java.util.concurrent.*;
  * @createTime 2020年05月26日 16:00:00
  */
 public class ThreadPoolFactory {
+    private static final Logger logger = LoggerFactory.getLogger(ThreadPoolFactory.class);
     /**
      * 线程池参数
      */
@@ -19,9 +23,24 @@ public class ThreadPoolFactory {
     private static final int KEEP_ALIVE_TIME = 1;
     private static final int BLOCKING_QUEUE_CAPACITY = 100;
 
+    private static Map<String, ExecutorService> threadPollsMap = new ConcurrentHashMap<>();
     private ThreadPoolFactory() {
     }
 
+    public static void shutDownAll() {
+        logger.info("关闭所有线程池...");
+        threadPollsMap.entrySet().parallelStream().forEach(entry -> {
+            ExecutorService executorService = entry.getValue();
+            executorService.shutdown();
+            logger.info("关闭线程池 [{}] [{}]", entry.getKey(), executorService.isTerminated());
+            try {
+                executorService.awaitTermination(10, TimeUnit.SECONDS);
+            } catch (InterruptedException ie) {
+                logger.error("关闭线程池失败！");
+                executorService.shutdownNow();
+            }
+        });
+    }
     public static ExecutorService createDefaultThreadPool(String threadNamePrefix) {
         return createDefaultThreadPool(threadNamePrefix, false);
     }

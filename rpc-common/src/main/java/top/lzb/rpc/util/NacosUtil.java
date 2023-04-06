@@ -55,6 +55,7 @@ public class NacosUtil {
 
     public static void clearRegistry() {
         if(!serviceNames.isEmpty() && address != null) {
+            logger.info("清除所有Nacos服务");
             String host = address.getHostName();
             int port = address.getPort();
             Iterator<String> iterator = serviceNames.iterator();

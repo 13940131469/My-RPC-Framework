@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import top.lzb.rpc.common.CommonDecoder;
 import top.lzb.rpc.common.CommonEncoder;
 import top.lzb.rpc.common.KYROSerializer;
+import top.lzb.rpc.hook.ShutdownHook;
 import top.lzb.rpc.provider.DefaultServiceProvider;
 import top.lzb.rpc.registry.NacosServiceRegistry;
 import top.lzb.rpc.provider.ServiceProvider;
@@ -59,6 +60,7 @@ public class NettyServer implements RpcServer {
                         }
                     });
             ChannelFuture future = serverBootstrap.bind(host,port).sync();
+            ShutdownHook.getShutdownHook().addClearAllHook();
             future.channel().closeFuture().sync();
 
         } catch (InterruptedException e) {
