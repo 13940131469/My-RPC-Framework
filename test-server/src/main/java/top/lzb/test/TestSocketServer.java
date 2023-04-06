@@ -1,7 +1,7 @@
 package top.lzb.test;
 
 import top.lzb.rpc.api.HelloService;
-import top.lzb.rpc.registry.DefaultServiceRegistry;
+import top.lzb.rpc.registry.DefaultServiceProvider;
 import top.lzb.rpc.server.RpcServer;
 import top.lzb.rpc.server.socket.SocketServer;
 
@@ -13,10 +13,10 @@ public class TestSocketServer {
 
     public static void main(String[] args) {
         HelloService helloService = new HelloServiceImpl();
-        DefaultServiceRegistry registry = new DefaultServiceRegistry();
-        registry.register(helloService);
+        DefaultServiceProvider registry = new DefaultServiceProvider();
+        registry.addServiceProvider(helloService);
         RpcServer rpcServer = new SocketServer(registry);
-        rpcServer.start(9000);
+        rpcServer.start();
     }
 
 }

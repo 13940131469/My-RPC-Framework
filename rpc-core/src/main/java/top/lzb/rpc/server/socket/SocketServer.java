@@ -2,6 +2,7 @@ package top.lzb.rpc.server.socket;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import top.lzb.rpc.registry.ServiceProvider;
 import top.lzb.rpc.registry.ServiceRegistry;
 import top.lzb.rpc.server.RequestHandler;
 import top.lzb.rpc.server.RpcServer;
@@ -25,15 +26,14 @@ public class SocketServer implements RpcServer {
     private static final int BLOCKING_QUEUE_CAPACITY = 100;
     private final ExecutorService threadPool;
     private RequestHandler requestHandler = new RequestHandler();
-    private final ServiceRegistry serviceRegistry;
+    private final ServiceProvider serviceRegistry;
 
-    public SocketServer(ServiceRegistry serviceRegistry) {
+    public SocketServer(ServiceProvider serviceRegistry) {
         this.serviceRegistry = serviceRegistry;
         BlockingQueue<Runnable> workingQueue = new ArrayBlockingQueue<>(BLOCKING_QUEUE_CAPACITY);
         ThreadFactory threadFactory = Executors.defaultThreadFactory();
         threadPool = new ThreadPoolExecutor(CORE_POOL_SIZE, MAXIMUM_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.SECONDS, workingQueue, threadFactory);
     }
-    @Override
     public void start(int port) {
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             logger.info("服务器启动……");
@@ -46,6 +46,16 @@ public class SocketServer implements RpcServer {
         } catch (IOException e) {
             logger.error("服务器启动时有错误发生:", e);
         }
+    }
+
+    @Override
+    public void start() {
+
+    }
+
+    @Override
+    public <T> void publishService(Object service, Class<T> serviceClass) {
+
     }
 }
 
