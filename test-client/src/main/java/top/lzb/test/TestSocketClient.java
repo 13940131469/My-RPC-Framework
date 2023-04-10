@@ -15,7 +15,7 @@ public class TestSocketClient {
         SocketClient socketClient = new SocketClient("127.0.0.1", 9000);
         RpcClientProxy proxy = new RpcClientProxy(socketClient);
         HelloService helloService = proxy.getProxy(HelloService.class);
-        HelloObject object = new HelloObject(12, "This is a message");
+        HelloObject object = new HelloObject(12, "This is a socket");
         String res = helloService.hello(object);
         System.out.println(res);
     }

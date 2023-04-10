@@ -15,26 +15,21 @@ import top.lzb.rpc.common.KYROSerializer;
 import top.lzb.rpc.hook.ShutdownHook;
 import top.lzb.rpc.provider.DefaultServiceProvider;
 import top.lzb.rpc.registry.NacosServiceRegistry;
-import top.lzb.rpc.provider.ServiceProvider;
-import top.lzb.rpc.registry.ServiceRegistry;
-import top.lzb.rpc.server.RpcServer;
+import top.lzb.rpc.server.AbstractRpcServer;
+
 
 import java.net.InetSocketAddress;
 
-public class NettyServer implements RpcServer {
+public class NettyServer extends AbstractRpcServer {
 
     private static final Logger logger = LoggerFactory.getLogger(NettyServer.class);
-    private final String host;
-    private final int port;
-
-    private final ServiceRegistry serviceRegistry;
-    private final ServiceProvider serviceProvider;
 
     public NettyServer(String host, int port) {
         this.host = host;
         this.port = port;
         serviceRegistry = new NacosServiceRegistry();
         serviceProvider = new DefaultServiceProvider();
+        scanServices();
     }
 
     @Override
@@ -69,13 +64,6 @@ public class NettyServer implements RpcServer {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
         }
-    }
-
-    @Override
-    public <T> void publishService(Object service, Class<T> serviceClass) {
-        serviceProvider.addServiceProvider(service);
-        serviceRegistry.register(serviceClass.getCanonicalName(), new InetSocketAddress(host, port));
-        start();
     }
 }
 
